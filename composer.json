@@ -1,0 +1,46 @@
+{
+  "name": "turncypher/composer-demo",
+  "type": "project",
+  "license": "Apache",
+  "authors": [
+    {
+      "name": "turncypher",
+      "email": "turncypher@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/turncypher/composer-dependence-one"
+    }
+  ],
+  "require": {
+    "turncypher/composer-dependence-one": "@dev",
+    "turncypher/composer-dependence-two": "@dev"
+  },
+
+  "autoload": {
+    "psr-4": {
+      "Psr4\\": "app/psr4/src/"
+    },
+    "psr-0": {
+      "Psr0\\Psr0_Demo": "app/psr0"
+    },
+    "classmap": [
+      "src/",
+      "lib/",
+      "ClassMapDemo3.php"
+    ],
+    "files": [
+      "support/MyLibrary/functions-one.php",
+      "support/MyLibrary/functions-two.php"
+    ],
+    "include-path": [
+      "deprecated/"
+    ]
+  },
+  "config": {
+    "use-include-path": true
+  }
+}
