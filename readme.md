@@ -1,4 +1,4 @@
-##安装
+## 安装
 
 ### *nix
 
@@ -37,18 +37,18 @@ mv composer.phar /usr/local/bin/composer
 ----------
 
 
-###在Windows
+### 在Windows
 ```
 https://getcomposer.org/Composer-Setup.exe
 ```
 
 ----------
-##__composer.json：项目安装__
+## __composer.json：项目安装__
 >你只需要一个 composer.json 文件。该文件包含了项目的依赖和其它的一些元数据。
 ```
 composer init
 ```
-###__关于 require Key__
+### __关于 require Key__
 
 你需要在 composer.json 文件中指定 require key 的值。你只需要简单的告诉 Composer 你的项目需要依赖哪些包。
 ```
@@ -62,13 +62,13 @@ composer init
 ```
 composer install
 ```
-###__包名称__
+### __包名称__
 包名称由提供者名称和其项目名称构成。通常容易产生相同的项目名称，而提供者名称的存在则很好的解决了命名冲突的问题。它允许两个不同的人创建同名的库
 ```
 composer require nesbot/carbon
 composer require citco/carbon
 ```
-###__包版本__
+### __包版本__
 
 在前面的例子中，我们引入的 monolog 版本指定为 `1.0.*`。这表示任何从 `1.0` 开始的开发分支，它将会匹配 `1.0.0`、`1.0.2` 或者 `1.0.20`。
 > 版本约束可以用几个不同的方法来指定
@@ -84,7 +84,7 @@ _波浪号运算符_
 
 ----------
 
-##__composer.lock - 锁文件__
+## __composer.lock - 锁文件__
 
 >在安装依赖后，Composer 将把安装时确切的版本号列表写入 composer.lock 文件。这将锁定改项目的特定版本。
 
@@ -110,7 +110,7 @@ composer update monolog/monolog [...]
 ----------
 
 
-##__repositories__
+## __repositories__
 使用自定义的包资源库。
 
 默认情况下 composer 只使用 packagist作为包的资源库。通过指定资源库，你可以从其他地方获取资源包。
@@ -130,10 +130,10 @@ package| 如果你依赖于一个项目，它不提供任何对 composer 的支�
 
 ----------
 
-##__自动加载__
+## __自动加载__
 
 
-##__配置__
+## __配置__
 选项 | 描述
 --- | ---
 process-timeout | 默认为 `300`。处理进程结束时间，例如：git 克隆的时间。Composer 将放弃超时的任务。如果你的网络缓慢或者正在使用一个巨大的包，你可能要将这个值设置的更高一些。
