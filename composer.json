@@ -16,8 +16,8 @@
     }
   ],
   "require": {
-    "turncypher/composer-dependence-one": "@dev",
-    "turncypher/composer-dependence-two": "@dev"
+    "turncypher/composer-dependence-one": "dev-master",
+    "turncypher/composer-dependence-two": "dev-master"
   },
 
   "autoload": {

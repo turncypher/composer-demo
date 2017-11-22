@@ -48,6 +48,8 @@ https://getcomposer.org/Composer-Setup.exe
 ```
 composer init
 ```
+关于composer.json 的结构请参考[composer.json 架构](http://docs.phpcomposer.com/04-schema.html#autoload)
+
 ### __关于 require Key__
 
 你需要在 composer.json 文件中指定 require key 的值。你只需要简单的告诉 Composer 你的项目需要依赖哪些包。
@@ -81,21 +83,29 @@ composer require citco/carbon
 赋值运算符 | `~1.2` | 这对于遵循语义化版本号的项目非常有用。`~1.2`相当于`>=1.2,<2.0`
 _波浪号运算符_
 > `~` 最好用例子来解释： `~1.2` 相当于 `>=1.2,<2.0`，而 `~1.2.3` 相当于 `>=1.2.3,<1.3`。正如你所看到的这对于遵循  [语义化版本号](http://semver.org/lang/zh-CN/)的项目最有用。一个常见的用法是标记你所依赖的最低版本，像 ~1.2 （允许1.2以上的任何版本，但不包括2.0）。由于理论上直到2.0应该都没有向后兼容性问题，所以效果很好。你还会看到它的另一种用法，使用 ~ 指定最低版本，但允许版本号的最后一位数字上升。
+
+----------
+
+## __命令行__
+>为了从命令行获得帮助信息，请运行 composer 或者 composer list 命令，然后结合 --help 命令来获得更多的帮助信息。
+
+更多信息请参考[命令行](http://docs.phpcomposer.com/03-cli.html#composer-home)
+
 ----------
 
 ## __composer.lock - 锁文件__
 
->在安装依赖后，Composer 将把安装时确切的版本号列表写入 composer.lock 文件。这将锁定改项目的特定版本。
+>在安装依赖后，`Composer` 将把安装时确切的版本号列表写入 `composer.lock` 文件。这将锁定改项目的特定版本。
 
 __请提交你应用程序的 <kbd>composer.lock</kbd>（包括 <kbd>composer.json</kbd>）到你的版本库中__
 
-这是非常重要的，因为 install 命令将会检查锁文件是否存在，如果存在，它将下载指定的版本（__忽略 `composer.json` 文件中的定义__）。
+这是非常重要的，因为 `install` 命令将会检查锁文件是否存在，如果存在，它将下载指定的版本（__忽略 `composer.json` 文件中的定义__）。
 
 这意味着，任何人建立项目都将下载与指定版本完全相同的依赖。你的持续集成服务器、生产环境、你团队中的其他开发人员、每件事、每个人都使用相同的依赖，从而减轻潜在的错误对部署的影响。即使你独自开发项目，在六个月内重新安装项目时，你也可以放心的继续工作，即使从那时起你的依赖已经发布了许多新的版本。
 
-如果不存在 composer.lock 文件，Composer __将读取 `composer.json` 并创建锁文件__。
+如果不存在 `composer.lock` 文件，`Composer` __将读取 `composer.json` 并创建锁文件__。
 
-这意味着如果你的依赖更新了新的版本，你将不会获得任何更新。此时要更新你的依赖版本请使用 `update` 命令。这将获取最新匹配的版本（根据你的 composer.json 文件）并将新版本更新进锁文件。
+这意味着如果你的依赖更新了新的版本，你将不会获得任何更新。此时要更新你的依赖版本请使用 `update` 命令。这将获取最新匹配的版本（根据你的 `composer.json` 文件）并将新版本更新进锁文件。
 
 ```
 composer update
@@ -112,19 +122,62 @@ composer update monolog/monolog [...]
 ## __repositories__
 使用自定义的包资源库。
 
-默认情况下 composer 只使用 packagist作为包的资源库。通过指定资源库，你可以从其他地方获取资源包。
+默认情况下 `composer` 只使用 `packagist`作为包的资源库。通过指定资源库，你可以从其他地方获取资源包。
 
->Repositories 并不是递归调用的，只能在“Root包”的 composer.json 中定义。附属包中的 composer.json 将被忽略。
+>`Repositories` 并不是递归调用的，只能在__“Root包”__的 `composer.json` 中定义。附属包中的 `composer.json` 将被忽略。
 
 支持以下类型的包资源库：
 
 类型|说明 
 ----|----
-composer| 一个 composer 类型的资源库，是一个简单的网络服务器（HTTP、FTP、SSH）上的 packages.json 文件，它包含一个 composer.json 对象的列表，有额外的 dist 和/或 source 信息。这个 packages.json 文件是用一个 PHP 流加载的。你可以使用 options 参数来设定额外的流信息。
-vcs| 从 git、svn 和 hg 取得资源。
-pear| 从 pear 获取资源。
-package| 如果你依赖于一个项目，它不提供任何对 composer 的支持，你就可以使用这种类型。你基本上就只需要内联一个 composer.json 对象。
-
+composer| 一个 `composer` 类型的资源库，是一个简单的网络服务器（`HTTP`、`FTP`、`SSH`）上的 `packages.json` 文件，它包含一个 `composer.json` 对象的列表，有额外的 `dist` 和`/`或 `source` 信息。这个 `packages.json` 文件是用一个 PHP 流加载的。你可以使用 `options` 参数来设定额外的流信息。
+vcs| 从 `git`、`svn` 和 `hg` 取得资源。
+pear| 从 `pear` 获取资源。
+package| 如果你依赖于一个项目，它不提供任何对 `composer` 的支持，你就可以使用这种类型。你基本上就只需要内联一个 `composer.json` 对象。
+_实例_
+```
+{
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://packages.example.com"
+        },
+        {
+            "type": "composer",
+            "url": "https://packages.example.com",
+            "options": {
+                "ssl": {
+                    "verify_peer": "true"
+                }
+            }
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/Seldaek/monolog"
+        },
+        {
+            "type": "pear",
+            "url": "http://pear2.php.net"
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "smarty/smarty",
+                "version": "3.1.7",
+                "dist": {
+                    "url": "http://www.smarty.net/files/Smarty-3.1.7.zip",
+                    "type": "zip"
+                },
+                "source": {
+                    "url": "http://smarty-php.googlecode.com/svn/",
+                    "type": "svn",
+                    "reference": "tags/Smarty_3_1_7/distribution/"
+                }
+            }
+        }
+    ]
+}
+```
 更多相关内容，请查看 [资源库](http://docs.phpcomposer.com/05-repositories.html)。
 
 >__注意__： 顺序是非常重要的，当 Composer 查找资源包时，它会按照顺序进行。默认情况下 Packagist 是最后加入的，因此自定义设置将可以覆盖 Packagist 上的包。
@@ -135,6 +188,7 @@ package| 如果你依赖于一个项目，它不提供任何对 composer 的支�
 
 
 ## __配置__
+
 选项 | 描述
 --- | ---
 process-timeout | 默认为 `300`。处理进程结束时间，例如：git 克隆的时间。Composer 将放弃超时的任务。如果你的网络缓慢或者正在使用一个巨大的包，你可能要将这个值设置的更高一些。
@@ -156,3 +210,9 @@ optimize-autoloader | Defaults to `false`. Always optimize when dumping the auto
 github-domains | 默认为 `["github.com"]`。一个 github mode 下的域名列表。这是用于GitHub的企业设置。
 notify-on-install | 默认为 `true`。Composer 允许资源仓库定义一个用于通知的 URL，以便有人从其上安装资源包时能够得到一个反馈通知。此选项允许你禁用该行为。
 discard-changes | 默认为 `false`，它的值可以是 true、false 或 stash。这个选项允许你设置在非交互模式下，当处理失败的更新时采用的处理方式。true 表示永远放弃更改。"stash" 表示继续尝试。
+
+
+----------
+
+## __Demo地址__
+https://github.com/turncypher/composer-demo.git
