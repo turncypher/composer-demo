@@ -35,9 +35,6 @@
     "files": [
       "support/MyLibrary/functions-one.php",
       "support/MyLibrary/functions-two.php"
-    ],
-    "include-path": [
-      "deprecated/"
     ]
   },
   "config": {

@@ -124,7 +124,7 @@ composer update monolog/monolog [...]
 
 默认情况下 `composer` 只使用 `packagist`作为包的资源库。通过指定资源库，你可以从其他地方获取资源包。
 
->`Repositories` 并不是递归调用的，只能在__“Root包”__的 `composer.json` 中定义。附属包中的 `composer.json` 将被忽略。
+>`Repositories` 并不是递归调用的，只能在 __“Root包”__ 的 `composer.json` 中定义。附属包中的 `composer.json` 将被忽略。
 
 支持以下类型的包资源库：
 
@@ -185,7 +185,38 @@ _实例_
 ----------
 
 ## __自动加载__
+`Composer` 生成了一个 `vendor/autoload.php` 文件。你可以简单的引入这个文件，你会得到一个免费的自动加载支持。这使得你可以很容易的使用第三方代码。
+>你可以在 `composer.json` 的 `autoload` 字段中增加自己的 `autoloader`。
 
+_实例_
+
+```
+{
+    "autoload": {
+    "psr-4": {
+      "Psr4\\": "app/psr4/src/"
+    },
+    "psr-0": {
+      "Psr0\\Psr0_Demo": "app/psr0"
+    },
+    "classmap": [
+      "src/",
+      "lib/",
+      "ClassMapDemo3.php"
+    ],
+    "files": [
+      "support/MyLibrary/functions-one.php",
+      "support/MyLibrary/functions-two.php"
+    ]
+  }
+}
+```
+
+>`PSR-4`和`PSR-0`最大的区别是对下划线（`underscore`)的定义不同。`PSR-4`中，在类名中使用下划线没有任何特殊含义。而`PSR-0`则规定类名中的下划线_会被转化成目录分隔符。
+
+关于psr-4和psr-0规范请参考[psr-0规范](http://www.php-fig.org/psr/psr-0/)和[psr-4规范](http://www.php-fig.org/psr/psr-4/)
+
+----------
 
 ## __配置__
 
